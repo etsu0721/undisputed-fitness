@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1> {{ title }}</h1>
+    <div>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <div>
+                    {{ form.name.label }}
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-lg is-invalid") }}
+                        <div class="custom-invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div>{{ form.name }}</div>
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div>
+                {{ form.submit }}
+                <a class="button grey-btn" href="{{ url_for('exercise_category') }}">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1> {{ title }}</h1>
+    <div>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <div>
+                    {{ form.name.label }}
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-lg is-invalid") }}
+                        <div class="custom-invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div>{{ form.name(class="full-width-input") }}</div>
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div>
+                {{ form.submit }}
+            </div>
+        </form>
+    </div>
+    <table>
+        <caption>Exercise Categories</caption>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td style="border: 0;">
+                    <a class="button" id="updateCategoryBtn" href="{{ url_for('update_exercise_category', id=category.id, name=category.name) }}">Update</a>
+                </td>
+                <td style="border: 0;">
+                    <a class="button red-btn" id="deleteCategoryBtn" href="{{ url_for('delete_exercise_category', id=category.id) }}" onclick="return confirmDelete()">Delete</a>
+                    <script>
+                        function confirmDelete() {
+                            return confirm("Delete {{ category.name }} category?");
+                        }
+                    </script>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

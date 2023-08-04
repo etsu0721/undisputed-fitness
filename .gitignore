@@ -1,0 +1,11 @@
+# Ignore IDE specific files
+.vscode/
+
+# Ignore virtual environment directory
+.venv_undisputed_fitness/
+
+# Ignore system files
+.DS_Store
+
+# Ignore byte-compiled / optimized / DLL files
+__pycache__/
