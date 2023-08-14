@@ -9,3 +9,6 @@
 
 # Ignore byte-compiled / optimized / DLL files
 __pycache__/
+
+# Ignore development database
+instance/
