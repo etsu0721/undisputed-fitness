@@ -20,7 +20,7 @@ def exercise_category():
         new_category = ExerciseCategory(name=request.form['name'])
         db.session.add(new_category)
         db.session.commit()
-        flash(f'"{new_category.name}" category added.', 'success')
+        flash('New exercise category added.', 'success')
         return redirect(url_for('exercise_category'))
     return render_template('exercise_category.html', 
                            title='Exercise Categories', form=form,
@@ -52,8 +52,22 @@ def update_exercise_category(id, name):
 
 @app.route('/exercises', methods=['GET', 'POST'])
 def exercise():
-    form = ExerciseForm()
     # TODO: implement Create for exercises and handle images
+    form = ExerciseForm()
+    if form.validate_on_submit():
+        exercise = Exercise(
+            name=form.name.data,
+            desc=form.desc.data,
+            category=form.category.data,
+            work=form.work.data,
+            rest_seconds=form.rest_seconds.data,
+            sets=form.sets.data,
+            image_file=form.image_file.data
+        )
+        db.session.add(exercise)
+        db.session.commit()
+        flash('New exercise category added', 'success')
+        return redirect(url_for('home'))
     return render_template('exercise.html', title='Exercises', 
                            form=form)
 

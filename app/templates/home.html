@@ -1,5 +1,27 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1>{{ title }}</h1>
-    
+    <table>
+        <caption>Exercises</caption>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Work</th>
+            <th>Rest (seconds)</th>
+            <th>Sets</th>
+        </tr>
+        {% for exercise in exercises %}
+            <tr>
+                <td>{{ exercise.id }}</td>
+                <td>{{ exercise.name }}</td>
+                <td>{{ exercise.desc }}</td>
+                <td>{{ exercise.category.name }}</td>
+                <td>{{ exercise.work }}</td>
+                <td>{{ exercise.rest_seconds }}</td>
+                <td>{{ exercise.sets }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock content %}%
