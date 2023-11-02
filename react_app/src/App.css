@@ -1,8 +1,8 @@
 /* Import the Google font */
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap'); */
 
 body {
-  /* background-color: #222; */
+  background-color: #eee;
   /* font-family: 'Libre Baskerville', serif;  */
   height: 100vh;
   display: flex;
@@ -48,7 +48,7 @@ body {
   transform-style: preserve-3d;
   perspective: 1000px;
   transition: all 0.3s ease; /* Added transition */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added Shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 255, 0.100);
 }
 
 .shown-card {
@@ -68,15 +68,17 @@ body {
 }
 
 .card-back {
-  background-color: #222222;
-  /* placeholder */
-  background-image: url('https://github.com/etsu0721/undisputed-fitness/blob/c128cf5ce0688d3943a645699229fbfd042cf024/api/app/static/undisputed-logo.png');
+  background-color: #000000;
+  background-image: url('https://github.com/etsu0721/undisputed-fitness/blob/192d3d611490781bc2104b1361203b886c1e4456/react_app/public/undisputed-logo.png?raw=true');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .card-front {
-  background-color: #444;
+  background-color: #ffffff;
   transform: rotateY(180deg);
-  color: #FFF;
+  color: #222;
 }
 
 @keyframes flipAndMove {
