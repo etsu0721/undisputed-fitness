@@ -1,0 +1,4 @@
+cors:
+  - max_age: 3600
+    path: /react_app/public/undisputed-logo.png
+    origin: http://localhost:3000
