@@ -1,15 +1,39 @@
-from flask import render_template, redirect, flash, url_for, request
+from flask import render_template, redirect, flash, url_for, request, jsonify
 from app.forms import ExerciseCategoryForm, ExerciseForm
-from app.models import Exercise, ExerciseCategory
+from app.models import Exercise, ExerciseCategory, ExerciseSchema
 from app import app, db
+import random
+from datetime import datetime as dt
+from sqlalchemy.orm import load_only, session
+from sqlalchemy import select
 
+
+exercises_schema = ExerciseSchema(many=True)
 
 @app.route('/')
 @app.route('/home')
 def home():
-    exercises = Exercise.query.all()
-    return render_template('home.html', title='Undisputed Fitness', 
-                           exercises=exercises)
+    # #TODO: Set random seed scale back to one day
+    # # Set random seed for one day, setting smaller time scales to 0
+    # random.seed(dt.now().replace(second=0, microsecond=0).timestamp())
+    # # random.seed(dt.now().replace(hour=0, minute=0, second=0, microsecond=0).timestamp())
+
+    # # Get random sample of four (4) exercises
+    # all_exercises = Exercise.query.options(load_only(Exercise.id)).all()
+    # exercises = random.sample(all_exercises, k=4)
+    # return {
+    #     exercise.id: {
+    #         'name': exercise.name
+    #     } for exercise in exercises
+    # }
+    
+    # exercises_list = Exercise.query.limit(4).all()
+    # exercises_json = jsonify(exercises_schema.dump(exercises_list)).get_json()
+    # exercise_names = [ex['name'] for ex in exercises_json]
+    # return exercise_names
+
+    return render_template('home.html', title='Undisputed Fitness')
+
 
 
 @app.route('/exercise_categories', methods=['GET', 'POST'])
@@ -52,7 +76,6 @@ def update_exercise_category(id, name):
 
 @app.route('/exercises', methods=['GET', 'POST'])
 def exercise():
-    # TODO: implement Create for exercises and handle images
     form = ExerciseForm()
     if form.validate_on_submit():
         exercise = Exercise(
@@ -64,10 +87,12 @@ def exercise():
             sets=form.sets.data,
             image_file=form.image_file.data
         )
+        # TODO: handle images
         db.session.add(exercise)
         db.session.commit()
-        flash('New exercise category added', 'success')
-        return redirect(url_for('home'))
+        flash('New exercise added', 'success')
+        return redirect(url_for('exercise'))
+    exercises = Exercise.query.all()
     return render_template('exercise.html', title='Exercises', 
-                           form=form)
+                           form=form, exercises=exercises)
 

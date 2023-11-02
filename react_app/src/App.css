@@ -1,0 +1,95 @@
+/* Import the Google font */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
+body {
+  /* background-color: #222; */
+  /* font-family: 'Libre Baskerville', serif;  */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+}
+
+/* .container {
+  position: relative;
+  width: 200px;
+  height: 600px;
+  background: linear-gradient(to bottom right, #2a2a2a, #3e3e3e);
+} */
+
+.deck-area, .discard-pile {
+  width: 200px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.deck-area {
+  top: 50%;
+  cursor: pointer;
+}
+
+.discard-pile {
+  bottom: 50%;
+}
+
+.remaining-card, .shown-card {
+  width: 180px;
+  height: 280px;
+  background: linear-gradient(to bottom right, #555, #666); /* Gradient Card Background */
+  margin-top: 2px;
+  border-radius: 10px;
+  position: absolute;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: all 0.3s ease; /* Added transition */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added Shadow */
+}
+
+.shown-card {
+  animation: flipAndMove 1s forwards;
+}
+
+.card-back, .card-front {
+  position: absolute;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.card-back {
+  background-color: #222222;
+  /* placeholder */
+  background-image: url('https://github.com/etsu0721/undisputed-fitness/blob/c128cf5ce0688d3943a645699229fbfd042cf024/api/app/static/undisputed-logo.png');
+}
+
+.card-front {
+  background-color: #444;
+  transform: rotateY(180deg);
+  color: #FFF;
+}
+
+@keyframes flipAndMove {
+  0% {
+    transform: translateY(0) rotateY(0deg);
+  }
+  30% {
+    transform: translateY(-50px) rotateY(0deg);
+  }
+  60% {
+    transform: translateY(-50px) rotateY(180deg);
+  }
+  100% {
+    transform: translateY(0) rotateY(180deg);
+  }
+}

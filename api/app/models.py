@@ -1,4 +1,4 @@
-from app import db
+from app import db, ma
 
 class ExerciseCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -21,3 +21,7 @@ class Exercise(db.Model):
     def __repr__(self):
         return f"Exercise('{self.id}', '{self.name}', '{self.category}', 'Work: {self.work}', \
             'Rest: {self.rest_seconds}', 'Sets: {self.sets}')"
+
+class ExerciseSchema(ma.Schema):
+    class Meta:
+        fields = ('id', 'name', 'desc', 'work', 'rest_seconds', 'sets', 'category_id')
