@@ -1,26 +1,13 @@
-/* Import the Google font */
-/* @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap'); */
-
 body {
-  background-color: #eee;
-  /* font-family: 'Libre Baskerville', serif;  */
-  height: 100vh;
-  display: flex;
+  height: auto;
+  display: grid; /* Grid restores Simple.css styling for h1*/
   justify-content: center;
   align-items: center;
-  color: #000000;
 }
 
-/* .container {
-  position: relative;
-  width: 200px;
-  height: 600px;
-  background: linear-gradient(to bottom right, #2a2a2a, #3e3e3e);
-} */
-
 .deck-area, .discard-pile {
-  width: 200px;
-  height: 300px;
+  width: 100px;
+  height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,17 +17,17 @@ body {
 }
 
 .deck-area {
-  top: 50%;
+  top: 65%;
   cursor: pointer;
 }
 
 .discard-pile {
-  bottom: 50%;
+  bottom: 35%;
 }
 
 .remaining-card, .shown-card {
-  width: 180px;
-  height: 280px;
+  width: 150px;
+  height: 225px;
   background: linear-gradient(to bottom right, #555, #666); /* Gradient Card Background */
   margin-top: 2px;
   border-radius: 10px;
@@ -76,7 +63,7 @@ body {
 }
 
 .card-front {
-  background-color: #ffffff;
+  background-color: #eee;
   transform: rotateY(180deg);
   color: #222;
 }
