@@ -2,6 +2,6 @@
 {% block content %}
     <link rel="stylesheet" href="{{ url_for('static', filename='react_app/static/css/main.1413a27b.css') }}">
     <h1>{{ title }}</h1>
-    <div id="root"></div>
-    <script src="{{ url_for('static', filename='react_app/static/js/main.851e43b3.js') }}"></script>
+    <div id="root" data-exercises="{{ exercises_json }}"></div>
+    <script src="{{ url_for('static', filename='react_app/static/js/main.5921c9b0.js') }}"></script>
 {% endblock content %}

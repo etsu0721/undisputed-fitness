@@ -2,31 +2,19 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  // const [exercises, setExercises] = useState([]);
-  // useEffect(() => {
-  //   fetch('/home').then(res => res.json()).then(data => {
-  //     setExercises(data)
-  //   });
-  // }, []);
-  // const [deck, setDeck] = useState(generateDeck(exercises));
-
-  const [deck, setDeck] = useState(generateDeck());
+  // Get exercise data from backend
+  const rootElement = document.getElementById("root");
+  const exercisesJSON = rootElement.getAttribute("data-exercises");
+  const [deck, setDeck] = useState(generateDeck(JSON.parse(exercisesJSON)));
   const [shown, setShown] = useState([]);
 
   function generateDeck(exercises) {
-    // WHY WHEN I REPLACE `values` WITH `exercises` DO THE CARDS DISAPPEAR IN UI?
     const suits = ['♠', '♣', '♦', '♥'];
-    const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-    console.log(exercises)
-
-    let deck = [];
-
-    for (let suit of suits) {
-      for (let value of values) {
-        deck.push({ value: value + suit, zIndex: 0 });
-      }
+    let pairings = [];
+    for (let i = 0; i < 4; i++) {
+      pairings.push({value: suits[i] + exercises[i]["name"], zIndex: 0});
     }
-
+    let deck = Array(13).fill(pairings).flat();
     return shuffle(deck);
   }
 

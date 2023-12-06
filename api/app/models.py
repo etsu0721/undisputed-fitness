@@ -19,7 +19,7 @@ class Exercise(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey(ExerciseCategory.id), nullable=False)
 
     def __repr__(self):
-        return f"Exercise('{self.id}', '{self.name}', '{self.category}', 'Work: {self.work}', \
+        return f"Exercise('{self.id}', '{self.name}', '{self.desc}','{self.category}', 'Work: {self.work}', \
             'Rest: {self.rest_seconds}', 'Sets: {self.sets}')"
 
 class ExerciseSchema(ma.Schema):

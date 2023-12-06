@@ -50,6 +50,14 @@
                     <td>{{ exercise.work }}</td>
                     <td>{{ exercise.rest_seconds }}</td>
                     <td>{{ exercise.sets }}</td>
+                    <td style="border: 0;">
+                        <a class="button red-btn" id="deleteCategoryBtn" href="{{ url_for('delete_exercise', id=exercise.id) }}" onclick="return confirmDelete()">Delete</a>
+                        <script>
+                            function confirmDelete() {
+                                return confirm("Delete exercise?");
+                            }
+                        </script>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
