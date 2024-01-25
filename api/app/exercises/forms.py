@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, SubmitField, IntegerField, TextAreaField
-from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Length, NumberRange, ValidationError
-from app.models import ExerciseCategory, Exercise
+from wtforms_sqlalchemy.fields import QuerySelectField
+from app.models import ExerciseCategory
 
 
 def exercise_categories():

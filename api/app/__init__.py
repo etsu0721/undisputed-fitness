@@ -1,13 +1,26 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from app.config import Config
 
-# Initialize app
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'c87cf4f86058cdfa763cf4d340a0908v'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
-app.app_context().push()
-ma = Marshmallow(app)
+# Declare extensions
+db = SQLAlchemy()
+ma = Marshmallow()
 
-from app import routes
+def create_app(config_class=Config):
+    # Initialize app
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    app.app_context().push()
+
+    # Initialize extensions
+    db.init_app(app)
+    ma.init_app(app)
+
+    # Blueprints
+    from app.main.routes import main
+    from app.exercises.routes import exercises
+    app.register_blueprint(main)
+    app.register_blueprint(exercises)
+
+    return app
